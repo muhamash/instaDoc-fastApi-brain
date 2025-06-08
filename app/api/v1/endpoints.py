@@ -7,7 +7,7 @@ router = APIRouter()
 
 
 @router.get("/")
-def root():
+def home_route():
     return {"message": "Hello from InstaDoc FastApi Brain!", "status": "ok"}
 
 

@@ -1,4 +1,4 @@
-POST http://localhost:8000/api/v1/generate-docs       
+GET http://localhost:8000/  
 Content-Type: application/json
 
 {"repo_name": "fast-api", "structure": [{"path": "main.py", "type": "file", "content": "from fastapi import FastAPI\n\nfrom app.api.v1.endpoints import router as doc_router\n\napp = FastAPI(title=\"InstaDoc doc generation app\")\napp.include_router(doc_router, prefix=\"/api/v1\")\n"}, {"path": "endpoints.py", "type": "file", "content": "from fastapi import APIRouter\n\nfrom app.models.schema import RepoDocResponse, RepoRequest\nfrom app.services.doc_generator import generate_documentation\n\nrouter = APIRouter()\n\n@router.post(\"/generate-docs\", response_model=RepoDocResponse)\ndef generate_docs(payload: RepoRequest):\n    return generate_documentation(payload)\n"}]}
